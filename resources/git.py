@@ -51,8 +51,13 @@ def main():
             else:
                 GIT_REPO_PRIVACY_SETTING = False
 
+            if("GIT_README_CONTENT" in os.environ):
+                GIT_README_CONTENT = os.environ["GIT_README_CONTENT"]
+            else:
+                GIT_README_CONTENT = ""
+
             print(os.environ["GIT_TOKEN"])
-            git.createRepo(GIT_ORG, GIT_REPO, "README.md contents", GIT_REPO_PRIVACY_SETTING)
+            git.createRepo(GIT_ORG, GIT_REPO, GIT_README_CONTENT, GIT_REPO_PRIVACY_SETTING)
         
     else:
         print("Action is missing")
