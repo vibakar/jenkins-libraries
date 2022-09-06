@@ -33,15 +33,15 @@ def main():
 
     if(args.action or args.a):
         if(args.action == "createRepo"):
-            if("GIT_ORG" in os.environ):
-                GIT_ORG = os.environ["GIT_ORG"]
+            if("GIT_ORGANIZATION" in os.environ):
+                GIT_ORGANIZATION = os.environ["GIT_ORGANIZATION"]
             else:
-                sys.exit("No GIT_ORG env variable set, exiting...")
+                sys.exit("No GIT_ORGANIZATION env variable set, exiting...")
 
-            if("GIT_REPO" in os.environ):
-                GIT_REPO = os.environ["GIT_REPO"]
+            if("GIT_REPO_NAME" in os.environ):
+                GIT_REPO_NAME = os.environ["GIT_REPO_NAME"]
             else:
-                sys.exit("No GIT_REPO env variable set, exiting...")
+                sys.exit("No GIT_REPO_NAME env variable set, exiting...")
             
             if("GIT_REPO_PRIVACY_SETTING" in os.environ):
                 if(os.environ["GIT_REPO_PRIVACY_SETTING"] == "Y" or os.environ["GIT_REPO_PRIVACY_SETTING"].upper() == "YES"):
@@ -56,8 +56,7 @@ def main():
             else:
                 GIT_README_CONTENT = ""
 
-            print(os.environ["GIT_TOKEN"])
-            git.createRepo(GIT_ORG, GIT_REPO, GIT_README_CONTENT, GIT_REPO_PRIVACY_SETTING)
+            git.createRepo(GIT_ORGANIZATION, GIT_REPO_NAME, GIT_README_CONTENT, GIT_REPO_PRIVACY_SETTING)
         
     else:
         print("Action is missing")
